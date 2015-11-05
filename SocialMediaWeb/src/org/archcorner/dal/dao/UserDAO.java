@@ -18,6 +18,36 @@ public class UserDAO
 	private String updateSQL = "UPDATE USER SET USERNAME=? AND PASSWORD=? WHERE USERID=?";
 	private String deleteSQL = "DELETE FROM USER WHERE USERID=?";
 	
+	public void deleteUser(User user)
+	{
+		Connection connection = JDBCManager.getConnection();
+		PreparedStatement preparedStatement = null;
+		try
+		{
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setInt(1, user.getUserId());
+			preparedStatement.executeUpdate();
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(preparedStatement != null)
+				{
+					preparedStatement.close();
+				}
+			}
+			catch(Exception exception)
+			{
+				exception.printStackTrace();
+			}
+		}
+	}
 	
 	public void updateUser(User user)
 	{
