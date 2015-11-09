@@ -36,6 +36,8 @@ String siteName = site.getSiteName();
 <th> SiteName</th>
 <th> ExperienceId</th>
 <th> Experience</th>
+<th> Edit Experience</th>
+<th> Delete Experience </th>
 </tr>
 <%
 
@@ -52,6 +54,14 @@ for(Experience experience: experiences)
 	out.println("<td border=1>");
 	out.println(experience.getExperience());
 	out.println("</td>");
+	out.println("<td border=1>");
+	out.println("<A HREF='editExperience.jsp?id="+experience.getExperienceId()+"'>Edit</A>");
+	out.println("</td>");
+	out.println("<td border=1>");
+	out.println("<A HREF='deleteExperience.jsp?id="+experience.getExperienceId()+"'>Delete</A>");
+	out.println("</td>");
+	
+	
 %>
 
 <%

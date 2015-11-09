@@ -29,7 +29,7 @@ String siteName = site.getSiteName();
 <section id="one" class="main style1">
 <div class="container">
 <%
- String blogId = request.getParameter("blogId");
+ String blogId = request.getParameter("blogid");
  
 
  Blog blog = new Blog();
