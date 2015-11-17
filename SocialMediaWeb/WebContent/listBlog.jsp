@@ -32,7 +32,7 @@ BlogService blogService = new BlogService();
 List<Blog> blogList = blogService.getBlogs(Integer.valueOf(siteId));
 
 out.println("<table border=1>");
-out.println("<tr><th>Site Name</th><th>Blog Id</th><th>Blog Title</th></tr>");
+out.println("<tr><th>Site Name</th><th>Blog Id</th><th>Blog Title</th><th>Edit Blog</th><th>Delete Blog</th></tr>");
 for(Blog blog:blogList)
 {
 	out.println("<tr border=1>");
@@ -49,6 +49,12 @@ for(Blog blog:blogList)
 	out.println("<A HREF='BlogItemMain.jsp?id="+siteId+"&blogid="+blog.getBlogId()+"'>"+blog.getBlogTitle()+"</A>");
 	out.println("</td>");
 	
+	out.println("<td>");
+	out.println("<A HREF='EditBlog.jsp?id="+siteId+"&blogid="+blog.getBlogId()+"'>"+"Edit Blog"+"</A>");
+	out.println("</td>");
+	
+	out.println("<td>");
+	out.println("<A HREF='DeleteBlog.jsp?id="+siteId+"&blogid="+blog.getBlogId()+"'>"+"Delete Blog"+"</A>");
 	out.println("</tr>");
 	
 	

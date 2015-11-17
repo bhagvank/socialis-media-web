@@ -35,7 +35,7 @@ List<Customer> customerList = customerService.getCustomers(Integer.valueOf(siteI
 <div class="container">
 <%
 out.println("<table border=1>");
-out.println("<tr><th>Site Name</th><th>Customer Id</th><th>CustomerName</th></tr>");
+out.println("<tr><th>Site Name</th><th>Customer Id</th><th>CustomerName</th><th>Edit Customer</th><th>Delete Customer</th></tr>");
 for(Customer customer:customerList)
 {
 	out.println("<tr border=1>");
@@ -51,6 +51,13 @@ for(Customer customer:customerList)
 	
 	out.println(customer.getCustomerName());
 	out.println("</td>");
+	out.println("<td border=1>");
+	out.println("<A HREF='EditCustomer.jsp?id="+siteId+"&customerId="+customer.getCustomerId()+"'> Edit Customer</A>");
+	out.println("</td>");
+	out.println("<td border=1>");
+	out.println("<A HREF='DeleteCustomer.jsp?id="+siteId+"&customerId="+customer.getCustomerId()+"'>Delete Customer</A>");
+	out.println("</td>");
+	
 	
 	out.println("</tr>");
 	

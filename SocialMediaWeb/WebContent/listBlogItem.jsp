@@ -37,7 +37,7 @@ String siteName = site.getSiteName();
  BlogItemService blogItemService = new BlogItemService();
  List<BlogItem> blogItemList =blogItemService.getBlogItems(blog);
  out.println("<table border=1>");
- out.println("<tr><th>BlogItemId</th><th>Blog Item</th></tr>");
+ out.println("<tr><th>BlogItemId</th><th>Blog Item</th><th>Edit Blog Item</th><th>Delete Blog Item</th></tr>");
  for( BlogItem blogItem: blogItemList)
  {
 	 out.println("<tr border=1>");
@@ -47,6 +47,11 @@ String siteName = site.getSiteName();
 	 out.println("<td>");
 	 out.println(blogItem.getBlogItem());
 	 out.println("</td>");
+	 out.println("<td>");
+	 out.println("<A HREF='EditBlogItem.jsp?id="+blog.getBlogId()+"&blogItemId="+blogItem.getBlogItemId()+"'>"+"Edit Blog Item"+"</A>");
+	 out.println("</td>");
+	 out.println("<td>");
+	 out.println("<A HREF='DeleteBlogItem.jsp?id="+blog.getBlogId()+"&blogItemId="+blogItem.getBlogItemId()+"'>"+"Delete Blog Item"+"</A>");
 	 out.println("</tr>");
  }
  

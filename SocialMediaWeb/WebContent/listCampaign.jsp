@@ -35,7 +35,7 @@ List<Campaign> campaignList = campaignDAO.getCampaigns(Integer.valueOf(siteId));
 <div class="container">
 <%
 out.println("<table border=1>");
-out.println("<tr><th>Site Name</th><th>Campaign Id</th><th>CampaignName</th><th>Campaign Content</tr>");
+out.println("<tr><th>Site Name</th><th>Campaign Id</th><th>CampaignName</th><th>Campaign Content</th><th>Edit Campaign</th><th>Delete Campaign</th></tr>");
 for(Campaign campaign:campaignList)
 {
 	out.println("<tr border=1>");
@@ -55,6 +55,12 @@ for(Campaign campaign:campaignList)
     out.println("<td border=1>");
 	
 	out.println(campaign.getCampaignText());
+	out.println("</td>");
+	out.println("<td border=1>");
+	out.println("<A HREF='EditCampaign.jsp?id="+siteId+"&campaignId="+campaign.getCampaignId()+"'>"+"Edit Campaign"+"</A>");
+	out.println("</td>");
+	out.println("<td border=1>");
+	out.println("<A HREF='DeleteCampaign.jsp?id="+siteId+"&campaignId="+campaign.getCampaignId()+"'>"+"Delete Campaign"+"</A>");
 	out.println("</td>");
 	out.println("</tr>");
 	

@@ -32,7 +32,7 @@ User user = authenticationService.getUserById(Integer.valueOf(userId));
     List<Site> siteList = siteService.getSites(Integer.valueOf(userId));
     
     out.println("<table border=2>");
-    out.println("<tr><th>SiteId</th><th>&nbsp&nbsp SiteName</th></tr>");
+    out.println("<tr><th>SiteId</th><th>&nbsp&nbsp SiteName</th><th>Edit Site</th><th>Delete Site</th></tr>");
     for(Site site: siteList)
     {
     	out.println("<tr border=1>");
@@ -41,6 +41,12 @@ User user = authenticationService.getUserById(Integer.valueOf(userId));
     	out.println("</td>");
     	out.println("<td border=1>");
     	out.println("<A HREF='SocialMediaWeb.jsp?id="+site.getSiteId()+"&name="+site.getSiteName()+ "&userId="+userId+"'>"+site.getSiteName()+"</A>");
+    	out.println("</td>");
+    	out.println("<td border=1>");
+    	out.println("<A HREF='EditSite.jsp?id="+site.getSiteId()+"'>Edit Site</A>");
+    	out.println("</td>");
+    	out.println("<td border=1>");
+    	out.println("<A HREF='DeleteSite.jsp?id="+site.getSiteId()+"'>DeleteSite</A>");
     	out.println("</td>");
     	out.println("</tr>");
     }
