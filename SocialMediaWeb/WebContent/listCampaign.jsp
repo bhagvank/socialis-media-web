@@ -57,10 +57,10 @@ for(Campaign campaign:campaignList)
 	out.println(campaign.getCampaignText());
 	out.println("</td>");
 	out.println("<td border=1>");
-	out.println("<A HREF='EditCampaign.jsp?id="+siteId+"&campaignId="+campaign.getCampaignId()+"'>"+"Edit Campaign"+"</A>");
+	out.println("<A HREF='editCampaign.jsp?id="+siteId+"&campaignId="+campaign.getCampaignId()+"'>"+"Edit Campaign"+"</A>");
 	out.println("</td>");
 	out.println("<td border=1>");
-	out.println("<A HREF='DeleteCampaign.jsp?id="+siteId+"&campaignId="+campaign.getCampaignId()+"'>"+"Delete Campaign"+"</A>");
+	out.println("<A HREF='deleteCampaign.jsp?id="+siteId+"&campaignId="+campaign.getCampaignId()+"'>"+"Delete Campaign"+"</A>");
 	out.println("</td>");
 	out.println("</tr>");
 	

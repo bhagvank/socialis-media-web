@@ -15,6 +15,7 @@
   String customerName = request.getParameter("customerName");
   String campaignName = request.getParameter("campaignName");
   String campaignText = request.getParameter("campaignText");
+  String campaignId = request.getParameter("campaignId");
   
  //  out.println(blogTitle + "creating");
    CampaignService campaignService = new CampaignService();
@@ -22,8 +23,11 @@
    CustomerService customerService = new CustomerService();
    
    Customer customer = customerService.getCustomer(customerName);
-   
-   Campaign campaign = new Campaign();
+   Campaign campaign = null;
+		   
+   if(campaignId == null)
+   {
+   campaign = new Campaign();
    campaign.setCampaignId(campaignService.getHighestId()+1);
    campaign.setCampaignName(campaignName);
    campaign.setCampaignText(campaignText);
@@ -33,9 +37,22 @@
    customerCampaign.setCampaignId(campaign.getCampaignId());
    customerCampaign.setCustomerCampaignId(campaignService.getHighestCustomerCampaignId());
    customerCampaign.setCustomerId(customer.getCustomerId());
-  
    
    campaignService.saveCampaign(campaign);
+   }
+   else
+   {
+	   campaign = new Campaign();
+	   campaign.setCampaignId(Integer.parseInt(campaignId));
+	   campaign.setCampaignName(campaignName);
+	   campaign.setCampaignText(campaignText);
+	   campaign.setSiteId(Integer.parseInt(siteId));
+	   
+	   campaignService.updateCampaign(campaign);
+   }
+  
+   
+   
    
   // out.flush();
    //out.println(blogTitle + "created");

@@ -26,10 +26,26 @@ public class BlogItemService {
 		BlogItemDAO blogItemDAO = new BlogItemDAO();
 		blogItemDAO.saveBlogItem(blogItem);
 	}
+	public void deleteBlogItem(BlogItem blogItem)
+	{
+		BlogItemDAO blogItemDAO = new BlogItemDAO();
+		blogItemDAO.deleteBlogItem(blogItem);
+	}
+	public void updateBlogItem(BlogItem blogItem)
+	{
+		BlogItemDAO blogItemDAO = new BlogItemDAO();
+		blogItemDAO.updateBlogItem(blogItem);
+	}
 	public List<BlogItem> getBlogItems(Blog blog)
 	{
 		BlogItemDAO blogItemDAO = new BlogItemDAO();
 		return blogItemDAO.getBlogItems(blog);
+	}
+	
+	public BlogItem getBlogItem(int blogItemId)
+	{
+		BlogItemDAO blogItemDAO = new BlogItemDAO();
+		return blogItemDAO.getBlogItem(blogItemId);
 	}
 	
 }

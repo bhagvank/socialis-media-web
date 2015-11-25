@@ -15,7 +15,7 @@ public class UserDAO
 	private String selectSQL = "SELECT * FROM USER WHERE USERNAME=?";
 	private String highestIDSQL = "SELECT MAX(USERID) as MaxUSerId FROM USER";
 	private String selectUserSQL = "SELECT * FROM USER WHERE USERID=?";
-	private String updateSQL = "UPDATE USER SET USERNAME=? AND PASSWORD=? WHERE USERID=?";
+	private String updateSQL = "UPDATE USER SET USERNAME=?,PASSWORD=? WHERE USERID=?";
 	private String deleteSQL = "DELETE FROM USER WHERE USERID=?";
 	
 	public void deleteUser(User user)

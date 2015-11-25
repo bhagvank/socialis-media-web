@@ -18,7 +18,7 @@ public class ChatDAO {
 	
 	private String insertSQL = "INSERT INTO CHAT(CHATID,CHATTEXT,FROMUSER) VALUES(?,?,?)";
 	private String insertChatSQL = "INSERT INTO CHATUSER(CHATUSERID,CHATID,FROMUSERID,TOUSERID) VALUES(?,?,?,?)";
-	private String updateSQL = "UPDATE CHAT SET CHATTEXT=? AND FROMUSER=? WHERE CHATID=?";
+	private String updateSQL = "UPDATE CHAT SET CHATTEXT=?,FROMUSER=? WHERE CHATID=?";
 	private String deleteSQL = "DELETE FROM CHAT WHERE CHATID=?";
 	private String fromSelectSQL = "SELECT * FROM CHAT WHERE FROMUSER=";
 	private String toSelectSQL = "SELECT * FROM CHATUSER WHERE TOUSERID=? AND FROMUSERID=?";

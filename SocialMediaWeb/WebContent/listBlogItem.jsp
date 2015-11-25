@@ -45,13 +45,13 @@ String siteName = site.getSiteName();
 	 out.println(blogItem.getBlogItemId());
 	 out.println("</td>");
 	 out.println("<td>");
-	 out.println(blogItem.getBlogItem());
+	 out.println(blogItem.getBlogItemTitle());
 	 out.println("</td>");
 	 out.println("<td>");
-	 out.println("<A HREF='EditBlogItem.jsp?id="+blog.getBlogId()+"&blogItemId="+blogItem.getBlogItemId()+"'>"+"Edit Blog Item"+"</A>");
+	 out.println("<A HREF='editBlogItem.jsp?id="+siteId+"&blogId="+blog.getBlogId()+"&blogItemId="+blogItem.getBlogItemId()+"'>"+"Edit Blog Item"+"</A>");
 	 out.println("</td>");
 	 out.println("<td>");
-	 out.println("<A HREF='DeleteBlogItem.jsp?id="+blog.getBlogId()+"&blogItemId="+blogItem.getBlogItemId()+"'>"+"Delete Blog Item"+"</A>");
+	 out.println("<A HREF='deleteBlogItem.jsp?id="+siteId+"&blogId="+blog.getBlogId()+"&blogItemId="+blogItem.getBlogItemId()+"'>"+"Delete Blog Item"+"</A>");
 	 out.println("</tr>");
  }
  

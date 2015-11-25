@@ -15,13 +15,60 @@ import java.sql.ResultSet;
 
 public class CampaignDAO {
 	private String insertSQL = "INSERT INTO CAMPAIGN(CAMPAIGNID,CAMPAIGNNAME,CAMPAIGNTEXT,SITEID) VALUES(?,?,?,?)";
-	private String updateSQL = "UPDATE CAMPAIGN SET CAMPAIGNNAME=? AND CAMPAIGNTEXT=? WHERE CAMPAIGNID=?";
+	private String updateSQL = "UPDATE CAMPAIGN SET CAMPAIGNNAME=?,CAMPAIGNTEXT=? WHERE CAMPAIGNID=?";
 	private String deleteSQL = "DELETE FROM CAMPAIGN WHERE CAMPAIGNID=?";
 	private String highestIDSQL = "SELECT MAX(CAMPAIGNID) AS MaxCampaignId FROM CAMPAIGN";
 	private String highestCustomerIDSQL = "SELECT MAX(CUSTOMERCAMPAIGNID) AS MaxCustomerCampaignId FROM CUSTOMERCAMPAIGN";
 	private String selectSQL = "SELECT * FROM CAMPAIGN WHERE SITEID=?";
 	private String insertCustomerSQL = "INSERT INTO CUSTOMERCAMPAIGN(CUSTOMERCAMPAIGNID,CAMPAIGNID,CUSTOMERID) VALUES(?,?,?)";
+	private String getSQL = "SELECT * FROM CAMPAIGN WHERE CAMPAIGNID=?";
 	
+	public Campaign getCampaign(int campaignId)
+	{
+		Connection connection = JDBCManager.getConnection();
+		PreparedStatement preparedStatement = null;
+		Campaign campaign = null;
+		try
+		{
+			preparedStatement = connection.prepareStatement(getSQL);
+			preparedStatement.setInt(1, campaignId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next())
+			{
+				int campaignIdNo = resultSet.getInt("CampaignId");
+				String campaignName = resultSet.getString("CampaignName");
+			    String campaignText = resultSet.getString("CampaignText");	
+			    
+			    campaign = new Campaign();
+			    campaign.setCampaignId(campaignIdNo);
+			    campaign.setCampaignName(campaignName);
+			    campaign.setCampaignText(campaignText);
+			}
+			
+			resultSet.close();
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				preparedStatement.close();
+			}
+			catch(Exception exception)
+			{
+				exception.printStackTrace();
+			}
+			
+			JDBCManager.closeConnection(connection);
+		}
+		
+		return campaign;
+	}
 	public void updateCampaign(Campaign campaign)
 	{
 		Connection connection = JDBCManager.getConnection();

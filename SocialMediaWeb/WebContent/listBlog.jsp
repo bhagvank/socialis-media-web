@@ -50,11 +50,11 @@ for(Blog blog:blogList)
 	out.println("</td>");
 	
 	out.println("<td>");
-	out.println("<A HREF='EditBlog.jsp?id="+siteId+"&blogid="+blog.getBlogId()+"'>"+"Edit Blog"+"</A>");
+	out.println("<A HREF='editBlog.jsp?id="+siteId+"&blogid="+blog.getBlogId()+"'>"+"Edit Blog"+"</A>");
 	out.println("</td>");
 	
 	out.println("<td>");
-	out.println("<A HREF='DeleteBlog.jsp?id="+siteId+"&blogid="+blog.getBlogId()+"'>"+"Delete Blog"+"</A>");
+	out.println("<A HREF='deleteBlog.jsp?id="+siteId+"&blogid="+blog.getBlogId()+"'>"+"Delete Blog"+"</A>");
 	out.println("</tr>");
 	
 	

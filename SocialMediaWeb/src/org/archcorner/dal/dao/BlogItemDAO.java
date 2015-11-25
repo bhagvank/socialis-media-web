@@ -15,10 +15,43 @@ import java.sql.Connection;
 public class BlogItemDAO {
 
 	private String insertSQL = "INSERT INTO BLOGITEMS(BLOGITEMID,BLOGITEMTITLE,BLOGITEMTEXT,BLOGID) VALUES(?,?,?,?)";
-	private String updateSQL = "UPDATE BLOGITEMS SET BLOGITEMTITLE=? WHERE BLOGITEMID=? AND BLOGID=?";
+	private String updateSQL = "UPDATE BLOGITEMS SET BLOGITEMTITLE=?,BLOGITEMTEXT=? WHERE BLOGITEMID=? AND BLOGID=?";
 	private String selectSQL = "SELECT * FROM BLOGITEMS WHERE BLOGID=";
-	private String deleteSQL = "DELETE FROM BLOGITEMS WHERE BLOGITEMID=? AND BLOGID=?";
+	private String selectBlogItemSQL = "SELECT * FROM BLOGITEMS WHERE BLOGITEMID=?";
+	private String deleteSQL = "DELETE FROM BLOGITEMS WHERE BLOGITEMID=?";
 	private String highestIDSQL = "SELECT MAX(BLOGITEMID) as MaxBlogItemId From BLOGITEMS";
+	
+	
+	public void deleteBlogItem(BlogItem blogItem)
+	{
+		Connection connection = JDBCManager.getConnection();
+		PreparedStatement preparedStatement = null;
+		try
+		{
+			preparedStatement = connection.prepareStatement(deleteSQL);
+			preparedStatement.setInt(1, blogItem.getBlogItemId());
+			preparedStatement.execute();
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				if(preparedStatement != null)
+				{
+				 preparedStatement.close();
+				}
+			}
+			catch(Exception exception)
+			{
+				exception.printStackTrace();
+			}
+			JDBCManager.closeConnection(connection);
+		}
+	}
 	
 	public void updateBlogItem(BlogItem blogItem)
 	{
@@ -28,8 +61,10 @@ public class BlogItemDAO {
 		{
 			preparedStatement = connection.prepareStatement(updateSQL);
 			preparedStatement.setString(1, blogItem.getBlogItemTitle());
-			preparedStatement.setInt(2, blogItem.getBlogItemId());
-			preparedStatement.setInt(3, blogItem.getBlogId());
+			preparedStatement.setString(2, blogItem.getBlogItem());
+			preparedStatement.setInt(3, blogItem.getBlogItemId());
+			preparedStatement.setInt(4, blogItem.getBlogId());
+			
 			preparedStatement.executeUpdate();
 		}
 		catch(Exception exception)
@@ -50,35 +85,7 @@ public class BlogItemDAO {
 		}
 	}
 	
-	public void deleteBlogItem(BlogItem blogItem)
-	{
-		Connection connection = JDBCManager.getConnection();
-		PreparedStatement preparedStatement = null;
-		try
-		{
-			preparedStatement = connection.prepareStatement(deleteSQL);
-			preparedStatement.setInt(1, blogItem.getBlogItemId());
-			preparedStatement.setInt(2, blogItem.getBlogId());
-			preparedStatement.executeUpdate();
-		}
-		catch(Exception exception)
-		{
-			exception.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				preparedStatement.close();
-			}
-			catch(Exception exception)
-			{
-				exception.printStackTrace();
-			}
-		  JDBCManager.closeConnection(connection);
-			
-		}
-	}
+	
 	public int getHighestId()
     {
     	Connection connection = JDBCManager.getConnection();
@@ -207,5 +214,51 @@ public class BlogItemDAO {
 		
 		return blogItemList;
 	}
-	
+	public BlogItem getBlogItem(int blogItemId)
+	{
+		Connection connection = JDBCManager.getConnection();
+		
+		PreparedStatement statement = null;
+		BlogItem blogItem = null;
+		try
+		{
+			statement = connection.prepareStatement(selectBlogItemSQL);
+			statement.setInt(1,blogItemId);
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				blogItem = new BlogItem();
+				int blogItemIdNo = resultSet.getInt("BlogItemId");
+				String blogItemTitle = resultSet.getString("BlogItemTitle");
+				String blogItemText = resultSet.getString("BlogItemText");
+				int blogId = resultSet.getInt("BlogId");
+				
+				blogItem.setBlogId(blogId);
+				blogItem.setBlogItemId(blogItemIdNo);
+				blogItem.setBlogItemTitle(blogItemTitle);
+				blogItem.setBlogItem(blogItemText);
+			}
+			resultSet.close();
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				statement.close();
+			}
+			catch(Exception exception)
+			{
+				exception.printStackTrace();
+			}
+			
+			JDBCManager.closeConnection(connection);
+		}
+		
+		return blogItem;
+		
+	}
 }

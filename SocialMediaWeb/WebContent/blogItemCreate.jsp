@@ -37,6 +37,14 @@ String siteName = site.getSiteName();
 <input type="hidden" name="id" value="<%=siteId%>">
 <table>
 <tr>
+<td>
+Input the BlogItem Title
+</td>
+<td>
+<input type="text" name="blogItemTitle">
+</td>
+</tr>
+<tr>
 <td>Input the blog Item </td>
 <td><textArea name="blogItemText" cols=40 rows=10>
 </textArea></td>

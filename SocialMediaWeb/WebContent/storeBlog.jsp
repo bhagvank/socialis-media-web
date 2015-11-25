@@ -13,15 +13,30 @@
 <%
   String siteId = request.getParameter("id");
   String blogTitle = request.getParameter("blogTitle");
+  String blogId = request.getParameter("blogId");
  //  out.println(blogTitle + "creating");
    BlogService blogService = new BlogService();
-   Blog blog = new Blog();
-   blog.setBlogId(blogService.getHighestId()+1);
-   blog.setBlogTitle(blogTitle);
-   blog.setSiteId(Integer.valueOf(siteId));
+   
+   Blog blog = null;
+   if(blogId == null)
+   {
+    blog = new Blog();
+    blog.setBlogId(blogService.getHighestId()+1);
+    blog.setBlogTitle(blogTitle);
+    blog.setSiteId(Integer.valueOf(siteId));
+    blogService.saveBlog(blog);
+   }
+   else
+   {
+	 blog = blogService.getBlog(Integer.parseInt(blogId));  
+	 blog.setBlogTitle(blogTitle);
+	 blog.setSiteId(Integer.valueOf(siteId));
+	 blogService.updateBlog(blog);  
+	   
+   }
   
    
-   blogService.saveBlog(blog);
+  
    
   // out.flush();
    //out.println(blogTitle + "created");

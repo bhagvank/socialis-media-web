@@ -14,7 +14,24 @@ import org.archcorner.pojo.CustomerCampaign;
  *
  */
 public class CampaignService {
+	
+	public Campaign getCampaign(int campaignId)
+	{
+		CampaignDAO campaignDAO = new CampaignDAO();
+		return campaignDAO.getCampaign(campaignId);
+	}
+	
+	public void deleteCampaign(Campaign campaign)
+	{
+		CampaignDAO campaignDAO = new CampaignDAO();
+		campaignDAO.deleteCampaign(campaign);
+	}
 
+	public void updateCampaign(Campaign campaign)
+	{
+		CampaignDAO campaignDAO = new CampaignDAO();
+		campaignDAO.updateCampaign(campaign);
+	}
 	public List<Campaign> getCampaigns(int site)
 	{
 		CampaignDAO campaignDAO = new CampaignDAO();

@@ -21,6 +21,17 @@ public class BlogService {
 		return blogDAO.getHighestId();
     }
 	
+	public void updateBlog(Blog blog)
+	{
+		BlogDAO blogDAO = new BlogDAO();
+		blogDAO.updateBlog(blog);
+	}
+	
+	public void deleteBlog(Blog blog)
+	{
+		BlogDAO blogDAO = new BlogDAO();
+		blogDAO.deleteBlog(blog);
+	}
 	public void saveBlog(Blog blog)
 	{
 		BlogDAO blogDAO = new BlogDAO();

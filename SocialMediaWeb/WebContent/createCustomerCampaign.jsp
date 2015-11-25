@@ -28,7 +28,7 @@ String siteName = site.getSiteName();
 </section>
 <section id="one" class="main style1">
 <div class="container">
-<form action="StoreCampaign.jsp" method="post">
+<form action="storeCampaign.jsp" method="post">
 <input type="hidden" name="id" value="<%=siteId%>">
 <table>
 <tr>
