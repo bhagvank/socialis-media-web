@@ -23,10 +23,23 @@ public class CustomerService {
 		 CustomerDAO customerDAO = new CustomerDAO();
 	      customerDAO.saveCustomer(customer);
 	 }
+	 
+	 public void updateCustomer(Customer customer)
+	 {
+		 CustomerDAO customerDAO =  new CustomerDAO();
+		 customerDAO.updateCustomer(customer);
+		 
+	 }
 	 public int getHighestId()
 	  {
 		 CustomerDAO customerDAO = new CustomerDAO();
 	     return customerDAO.getHighestId();
 		 
 	  }
+	 
+	 public void deleteCustomer(Customer customer)
+	 {
+		 CustomerDAO customerDAO = new CustomerDAO();
+		 customerDAO.deleteCustomer(customer);
+	 }
 }

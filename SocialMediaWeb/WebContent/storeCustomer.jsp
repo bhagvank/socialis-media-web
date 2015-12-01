@@ -11,10 +11,13 @@
 <body>
 <%
   String siteId = request.getParameter("id");
+  String customerId = request.getParameter("customerId");
   String customerName = request.getParameter("customerName");
   String customerMobile = request.getParameter("customerMobile");
   String customerAddress = request.getParameter("customerAddress");
   
+  if(customerId == null)
+  {
  //  out.println(blogTitle + "creating");
    CustomerService customerService = new CustomerService();
    Customer customer = new Customer();
@@ -26,7 +29,20 @@
   
    
    customerService.saveCustomer(customer);
-   
+  }
+  else
+  {
+	  CustomerService customerService = new CustomerService();
+	  Customer customer = new Customer();
+	  customer.setCustomerId(Integer.parseInt(customerId));
+	  customer.setCustomerName(customerName);
+	  customer.setMobileNo(customerMobile);
+	  customer.setAddress(customerAddress);
+	  customer.setSiteId(Integer.parseInt(siteId));
+	  
+	  customerService.updateCustomer(customer);
+	  
+  }
   // out.flush();
    //out.println(blogTitle + "created");
    

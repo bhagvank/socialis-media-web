@@ -52,10 +52,10 @@ for(Customer customer:customerList)
 	out.println(customer.getCustomerName());
 	out.println("</td>");
 	out.println("<td border=1>");
-	out.println("<A HREF='EditCustomer.jsp?id="+siteId+"&customerId="+customer.getCustomerId()+"'> Edit Customer</A>");
+	out.println("<A HREF='editCustomer.jsp?id="+siteId+"&customerName="+customer.getCustomerName()+"'> Edit Customer</A>");
 	out.println("</td>");
 	out.println("<td border=1>");
-	out.println("<A HREF='DeleteCustomer.jsp?id="+siteId+"&customerId="+customer.getCustomerId()+"'>Delete Customer</A>");
+	out.println("<A HREF='deleteCustomer.jsp?id="+siteId+"&customerName="+customer.getCustomerName()+"'>Delete Customer</A>");
 	out.println("</td>");
 	
 	

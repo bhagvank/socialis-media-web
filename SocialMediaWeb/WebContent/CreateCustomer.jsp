@@ -30,6 +30,7 @@ String siteName = site.getSiteName();
 <div class="container">
 <form action="storeCustomer.jsp" method="post">
 <input type="hidden" name="id" value="<%=siteId%>">
+
 <table>
 <tr>
 <td>
